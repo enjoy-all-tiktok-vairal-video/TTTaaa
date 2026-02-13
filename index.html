@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ENJOY ALL - Home</title>
+    <script src='//libtl.com/sdk.js' data-zone='10480960' data-sdk='show_10480960'></script>
+    <style>
+        body{ margin:0; background:#0d0d0d; font-family:Arial, sans-serif; color:white; }
+        .header{ display:flex; justify-content:space-between; align-items:center; padding:15px; background:#111; }
+        .logo{ font-size:24px; font-weight:bold; color:#ff0000; }
+        .search{ padding:8px; border-radius:6px; border:1px solid #333; background:#222; color:white; width:45%; }
+        .container{ padding:15px; margin-bottom:80px; min-height: 70vh; }
+        .card{ background:#1a1a1a; border-radius:12px; overflow:hidden; text-align:center; padding-bottom:15px; max-width: 450px; margin: auto; }
+        .card img{ width:100%; display:block; }
+        .card h3{ padding:15px 10px 5px; margin:0; }
+        .card p{ color:#aaa; font-size:14px; margin-bottom:15px; }
+        .button{ margin:5px auto; padding:12px; background:#ff0000; border:none; color:white; width:90%; border-radius:8px; font-size:16px; font-weight:bold; cursor:pointer; display:block; }
+        .nav{ position:fixed; bottom:0; width:100%; background:#111; display:flex; justify-content:space-around; padding:15px 0; border-top:1px solid #222; }
+        .nav a{ color:white; text-decoration:none; font-size:14px; }
+        .welcome-msg { text-align:center; margin-top:100px; color:#555; }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="logo">ENJOY ALL</div>
+    <input type="text" class="search" placeholder="Enter Code..." id="searchInput">
+</div>
+
+<div class="container" id="videoContainer">
+    <div class="welcome-msg">
+        <h2>স্বাগতম!</h2>
+        <p>ভিডিও দেখতে কোডটি এখানে সার্চ করুন।</p>
+    </div>
+</div>
+
+<div class="nav">
+    <a href="index.html">🏠 Home</a>
+    <a href="browser.html">🌐 Browser</a>
+    <a href="profile.html">👤 Profile</a>
+    <a href="support.html">🛠 Support</a>
+</div>
+
+<script>
+const videos = {
+    "EA101": { title: "Episode 101", image: "https://i.ibb.co/8gjVZLtR/poster.jpg", final: "https://t.me/Enjoyallvideo_bot?start=867109a9" },
+    "EA102": { title: "Episode 102", image: "https://i.ibb.co/8gjVZLtR/poster.jpg", final: "https://t.me/Enjoyallvideo_bot?start=867109a9" },
+    "EA103": { title: "Episode 103", image: "https://i.ibb.co/8gjVZLtR/poster.jpg", final: "https://t.me/Enjoyallvideo_bot?start=57c59a8a" },
+    "EA104": { title: "Episode 104", image: "https://i.ibb.co/8gjVZLtR/poster.jpg", final: "https://t.me/Enjoyallvideo_bot?start=ae7a9f1f" }
+};
+
+async function loadVideo(code) {
+    const v = videos[code.toUpperCase()];
+    const container = document.getElementById("videoContainer");
+    if (!v) { container.innerHTML = "<h2 style='text-align:center;color:red;margin-top:50px;'>❌ Code Not Found!</h2>"; return; }
+
+    let adsLeft = 4;
+    container.innerHTML = `
+    <div class="card">
+        <img src="${v.image}">
+        <h3>${v.title}</h3>
+        <p>Code: ${code.toUpperCase()}</p>
+        <button class="button" id="unlockBtn">🔒 UNLOCK (AD: ${adsLeft} LEFT)</button>
+        <button class="button" style="background:#333;" onclick="copyCode('${code}')">📋 COPY CODE</button>
+    </div>`;
+
+    const btn = document.getElementById("unlockBtn");
+    btn.onclick = function() {
+        if (typeof show_10480960 === 'function') {
+            show_10480960().then(() => { updateAdCount(); }).catch(() => { updateAdCount(); });
+        } else { updateAdCount(); }
+    };
+
+    function updateAdCount() {
+        adsLeft--;
+        if (adsLeft > 0) {
+            btn.innerText = `🔒 UNLOCK (AD: ${adsLeft} LEFT)`;
+        } else {
+            btn.innerText = "▶ PLAY VIDEO";
+            btn.style.background = "#28a745";
+            btn.onclick = () => { window.location.href = v.final; };
+        }
+    }
+}
+
+document.getElementById("searchInput").addEventListener("keyup", function() {
+    if (videos[this.value.toUpperCase()]) { loadVideo(this.value.toUpperCase()); }
+});
+
+function copyCode(code) {
+    navigator.clipboard.writeText(code);
+    alert("Code Copied!");
+}
+
+const params = new URLSearchParams(window.location.search);
+if (params.get("code")) { loadVideo(params.get("code")); }
+</script>
+</body>
+</html>

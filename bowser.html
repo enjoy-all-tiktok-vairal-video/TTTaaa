@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browser - ENJOY ALL</title>
+    <style>
+        body{margin:0;background:#0d0d0d;color:white;font-family:Arial;}
+        .header{padding:15px;color:#ff0000;font-size:24px;font-weight:bold;text-align:center;background:#111;}
+        .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:15px;margin-bottom:80px;}
+        .item{background:#1a1a1a;border-radius:12px;overflow:hidden;border:1px solid #222; cursor:pointer;}
+        .item img{width:100%;height:130px;object-fit:cover;}
+        .item p{text-align:center;padding:10px;margin:0;font-weight:bold;font-size:14px;}
+        .nav{position:fixed;bottom:0;width:100%;background:#111;display:flex;justify-content:space-around;padding:15px 0;border-top:1px solid #222;}
+        .nav a{color:white;text-decoration:none;}
+    </style>
+</head>
+<body>
+    <div class="header">EXPLORE CONTENT</div>
+    <div class="grid">
+        <div class="item" onclick="location.href='index.html?code=EA101'"><img src="https://i.ibb.co/8gjVZLtR/poster.jpg"><p>EA101</p></div>
+        <div class="item" onclick="location.href='index.html?code=EA102'"><img src="https://i.ibb.co/8gjVZLtR/poster.jpg"><p>EA102</p></div>
+        <div class="item" onclick="location.href='index.html?code=EA103'"><img src="https://i.ibb.co/8gjVZLtR/poster.jpg"><p>EA103</p></div>
+        <div class="item" onclick="location.href='index.html?code=EA104'"><img src="https://i.ibb.co/8gjVZLtR/poster.jpg"><p>EA104</p></div>
+    </div>
+    <div class="nav">
+        <a href="index.html">🏠 Home</a>
+        <a href="browser.html">🌐 Browser</a>
+        <a href="profile.html">👤 Profile</a>
+        <a href="support.html">🛠 Support</a>
+    </div>
+</body>
+</html>
