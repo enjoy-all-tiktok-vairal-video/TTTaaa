@@ -11,7 +11,7 @@
         .logo{ font-size:24px; font-weight:bold; color:#ff0000; }
         .search{ padding:8px; border-radius:6px; border:1px solid #333; background:#222; color:white; width:45%; }
         .container{ padding:15px; margin-bottom:80px; min-height: 70vh; }
-        .card{ background:#1a1a1a; border-radius:12px; overflow:hidden; text-align:center; padding-bottom:15px; max-width: 450px; margin: auto; }
+        .card{ background:#1a1a1a; border-radius:12px; overflow:hidden; text-align:center; padding-bottom:15px; max-width: 450px; margin: auto; border:1px solid #333; }
         .card img{ width:100%; display:block; }
         .card h3{ padding:15px 10px 5px; margin:0; }
         .card p{ color:#aaa; font-size:14px; margin-bottom:15px; }
@@ -50,7 +50,7 @@ const videos = {
     "EA104": { title: "Episode 104", image: "https://i.ibb.co/8gjVZLtR/poster.jpg", final: "https://t.me/Enjoyallvideo_bot?start=ae7a9f1f" }
 };
 
-async function loadVideo(code) {
+function loadVideo(code) {
     const v = videos[code.toUpperCase()];
     const container = document.getElementById("videoContainer");
     if (!v) { container.innerHTML = "<h2 style='text-align:center;color:red;margin-top:50px;'>❌ Code Not Found!</h2>"; return; }
